@@ -7,8 +7,24 @@ export default function RomanNumeralComponent () {
 
     const addAndConvertToRomanNumerals = (ints) => {
         /* Implement me! */
-        return ints;
+        const sum=    ints.reduce((a, b) => a + b, 0)
+        if(sum>1000)
+            return "Sum cannot be greater than 1000";
+        else
+            return toRoman(sum);
     }
+
+    const toRoman = (num) =>{
+        var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},roman = '',i;
+        for ( i in lookup ) {
+            while ( num >= lookup[i] ) {
+                roman += i;
+                num -= lookup[i];
+            }
+        }
+        return roman === "" ? "Nulla" : roman;
+    }
+
 
     const addNumbers = (inputString) => {
         const numbersStringArray = inputString.split(",");
